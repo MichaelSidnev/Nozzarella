@@ -29,7 +29,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Neo/Documents/GitHub/parserProject/json-20230227.jar" sourcepath="C:/Users/Neo/.m2/repository/org/jsoup/jsoup/1.15.4/jsoup-1.15.4-sources.jar">
+	<classpathentry kind="lib" path="E:/Git/Nozzarella/json-20230227.jar" sourcepath="C:/Users/Neo/.m2/repository/org/jsoup/jsoup/1.15.4/jsoup-1.15.4-sources.jar">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="maven.groupId" value="org.jsoup"/>
@@ -38,22 +38,21 @@
 			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Neo/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar" sourcepath="C:/Users/Neo/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1-sources.jar">
+	<classpathentry kind="lib" path="C:/Users/user/.m2/repository/org/springframework/boot/spring-boot/2.7.3/spring-boot-2.7.3.jar" sourcepath="C:/Users/user/.m2/repository/org/springframework/boot/spring-boot/2.7.3/spring-boot-2.7.3-sources.jar">
 		<attributes>
-			<attribute name="test" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="maven.groupId" value="com.vaadin.external.google"/>
-			<attribute name="maven.artifactId" value="android-json"/>
-			<attribute name="maven.version" value="0.0.20131108.vaadin1"/>
-			<attribute name="maven.scope" value="test"/>
+			<attribute name="maven.groupId" value="org.springframework.boot"/>
+			<attribute name="maven.artifactId" value="spring-boot"/>
+			<attribute name="maven.version" value="2.7.3"/>
+			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Neo/.m2/repository/org/jsoup/jsoup/1.15.4/jsoup-1.15.4.jar" sourcepath="C:/Users/Neo/.m2/repository/org/jsoup/jsoup/1.15.4/jsoup-1.15.4-sources.jar">
+	<classpathentry kind="lib" path="C:/Users/user/.m2/repository/org/attoparser/attoparser/2.0.5.RELEASE/attoparser-2.0.5.RELEASE.jar" sourcepath="C:/Users/user/.m2/repository/org/attoparser/attoparser/2.0.5.RELEASE/attoparser-2.0.5.RELEASE-sources.jar">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="maven.groupId" value="org.jsoup"/>
-			<attribute name="maven.artifactId" value="jsoup"/>
-			<attribute name="maven.version" value="1.15.4"/>
+			<attribute name="maven.groupId" value="org.attoparser"/>
+			<attribute name="maven.artifactId" value="attoparser"/>
+			<attribute name="maven.version" value="2.0.5.RELEASE"/>
 			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
