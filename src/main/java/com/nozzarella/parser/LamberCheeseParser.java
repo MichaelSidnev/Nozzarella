@@ -1,4 +1,4 @@
-package parsers;
+package com.nozzarella.parser;
 
 import java.io.IOException;
 import java.net.URL;

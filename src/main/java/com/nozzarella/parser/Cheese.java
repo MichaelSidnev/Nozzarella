@@ -1,16 +1,21 @@
-package models;
+package com.nozzarella.parser;
 
-public class Person {
+import java.math.BigDecimal;
+
+public class Cheese {
 	private int id;
 	private String name;
-	
-	public Person() {
-		
+	double cheesePrice;
+
+
+	public Cheese() {
+
 	}
-	
-	public Person(int id, String name) {
+
+	public Cheese(int id, String name, double cheesePrice) {
 		this.id = id;
 		this.name = name;
+		this.cheesePrice = cheesePrice;
 	}
 
 	public int getId() {
@@ -29,6 +34,13 @@ public class Person {
 		this.name = name;
 	}
 	
-	
+	public double getCheesePrice() {
+		return cheesePrice;
+	}
+
+	public void setCheesePrice(double cheesePrice) {
+		this.cheesePrice = cheesePrice;
+	}
+
 
 }

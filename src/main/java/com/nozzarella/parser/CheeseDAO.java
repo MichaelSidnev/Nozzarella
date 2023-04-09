@@ -1,35 +1,38 @@
-package controllers;
+package com.nozzarella.parser;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import models.Person;
+
 @Component
-public class PersonDAO {
-	private static int PEOPLE_COUNT;
-	private List<Person> people;
+public class CheeseDAO {
+	private static int CHEESE_COUNT;
+	private double cheesePrice;
+	private List<Cheese> cheese;
+
 
 	{
-		people = new ArrayList<>();
+		cheese = new ArrayList<>();
 
-		people.add(new Person(++PEOPLE_COUNT, "Tom"));
-		people.add(new Person(++PEOPLE_COUNT, "Bob"));
-		people.add(new Person(++PEOPLE_COUNT, "Mike"));
-		people.add(new Person(++PEOPLE_COUNT, "Katy"));
+		cheese.add(new Cheese(++CHEESE_COUNT, "Lamber1", 899.99));
+		cheese.add(new Cheese(++CHEESE_COUNT, "Lamber2", 899.99));
+		cheese.add(new Cheese(++CHEESE_COUNT, "Lamber3", 899.99));
+		cheese.add(new Cheese(++CHEESE_COUNT, "Lamber4", 899.99));
 	}
 
-	public List<Person> index() {
-		return people;
+	public List<Cheese> index() {
+		return cheese;
 	}
 
-	public Person show(int id) {
-		return people.stream().filter(person -> person.getId() == id).findAny().orElse(null);
+	public Cheese show(int id) {
+		return cheese.stream().filter(Cheese -> Cheese.getId() == id).findAny().orElse(null);
 	}
-	
-	public void save(Person person) {
-		person.setId(++PEOPLE_COUNT);
-		people.add(person);
+
+	public void save(Cheese Cheese) {
+		Cheese.setId(++CHEESE_COUNT);
+		cheese.add(Cheese);
 	}
 }

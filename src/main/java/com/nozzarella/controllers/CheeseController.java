@@ -1,6 +1,4 @@
-package controllers;
-
-import java.util.concurrent.atomic.AtomicLong;
+package com.nozzarella.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,48 +8,36 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.nozzarella.parser.MainRepresentationClass;
-
-import models.Person;
+import com.nozzarella.parser.Cheese;
+import com.nozzarella.parser.CheeseDAO;
 
 @Controller
-@RequestMapping("/people")
+@RequestMapping("/cheese")
 public class CheeseController {
-
-	private PersonDAO personDAO;
-
 	@Autowired
-	public CheeseController(PersonDAO personDAO) {
-		this.personDAO = personDAO;
-	}
+	private CheeseDAO CheeseDAO;
 
-//	@GetMapping()
-//	public String Representation() {
-//		return "mainPage";
-//	}
-
-	@GetMapping()
+	@GetMapping()	
 	public String index(Model model) {
-		model.addAttribute("people", personDAO.index());
+		model.addAttribute("cheese", CheeseDAO.index());
 		return "index";
 	}
 
 	@GetMapping("/{id}")
 	public String show(@PathVariable("id") int id, Model model) {
-		model.addAttribute("person", personDAO.show(id));
+		model.addAttribute("cheese", CheeseDAO.show(id));
 		return "show";
 	}
-	
+
 	@GetMapping("/new")
-	public String newPerson(@ModelAttribute("person") Person person) {
+	public String newCheese(@ModelAttribute("cheese") Cheese cheese) {
 		return "new";
 	}
+
 	@PostMapping()
-	public String create(@ModelAttribute("person") Person person) {
-		personDAO.save(person);
-		return "redirect:people"; 
+	public String create(@ModelAttribute("cheese") Cheese cheese) {
+		CheeseDAO.save(cheese);
+		return "redirect:cheese";
 	}
 }
