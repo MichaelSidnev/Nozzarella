@@ -10,17 +10,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class CheeseDAO {
 	private static int CHEESE_COUNT;
-	private double cheesePrice;
+	private BigDecimal cheesePrice;
 	private List<Cheese> cheese;
 
 
 	{
 		cheese = new ArrayList<>();
 
-		cheese.add(new Cheese(++CHEESE_COUNT, "Lamber1", 899.99));
-		cheese.add(new Cheese(++CHEESE_COUNT, "Lamber2", 899.99));
-		cheese.add(new Cheese(++CHEESE_COUNT, "Lamber3", 899.99));
-		cheese.add(new Cheese(++CHEESE_COUNT, "Lamber4", 899.99));
+		cheese.add(new Cheese(++CHEESE_COUNT, "Lamber1", new BigDecimal(599.99)));
+		cheese.add(new Cheese(++CHEESE_COUNT, "Lamber2", new BigDecimal(599.99)));
+		cheese.add(new Cheese(++CHEESE_COUNT, "Lamber3", new BigDecimal(599.99)));
+		cheese.add(new Cheese(++CHEESE_COUNT, "Lamber4", new BigDecimal(599.99)));
 	}
 
 	public List<Cheese> index() {
@@ -33,6 +33,9 @@ public class CheeseDAO {
 
 	public void save(Cheese Cheese) {
 		Cheese.setId(++CHEESE_COUNT);
+		Lenta a = new Lenta() ;
+		cheesePrice = a.lentaLamber();
+		Cheese.setCheesePrice(cheesePrice);
 		cheese.add(Cheese);
 	}
 }
