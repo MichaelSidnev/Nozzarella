@@ -6,9 +6,11 @@
     <title>Show</title>
 </head>
 <body>
-<p th:text="${cheese.getName()}">VALUE</p>
+<p th:text="${cheese.getProductName()}">VALUE</p>
 <p th:text="${cheese.getId()}">VALUE</p>
 <p th:text="${cheese.getCheesePrice()}">VALUE</p>
-
+		<a href="/cheese">
+			<button style="width: 50pt">back</button>
+		</a>
 </body>
 </html>

@@ -4,11 +4,24 @@
 <meta charset="UTF-8" />
 <title>Index</title>
 </head>
+
 <body>
+
+		<table>
+			<tr>
+				<th style="text-align: left;">Product type</th>
+				<th style="text-align: left;">Price per kilo</th>
+				<th style="text-align: left;">Country</th>
+				<th style="text-align: left;">City</th>
+			</tr>
+		</table>
 	<div th:each="cheese: ${cheese}">
 		<a th:href="@{/cheese/{id}(id=${cheese.getId()})}"
-			th:text="${cheese.getName()}">user</a> <a
+			th:text="${cheese.getProductName()}">user</a> <a
 			th:text="${cheese.getCheesePrice()}"></a>
 	</div>
+		<a href="/cheese/new">
+			<button style="width: 60pt"> parse </button>
+		</a>
 </body>
 </html>

@@ -4,17 +4,17 @@ import java.math.BigDecimal;
 
 public class Cheese {
 	private int id;
-	private String name;
-	BigDecimal cheesePrice;
+	private String cheeseProductName;
+	private BigDecimal cheesePrice;
 
 
 	public Cheese() {
 
 	}
 
-	public Cheese(int id, String name, BigDecimal cheesePrice) {
+	public Cheese(int id, String cheeseProductName, BigDecimal cheesePrice) {
 		this.id = id;
-		this.name = name;
+		this.cheeseProductName = cheeseProductName;
 		this.cheesePrice = cheesePrice;
 	}
 
@@ -26,12 +26,12 @@ public class Cheese {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getProductName() {
+		return cheeseProductName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setProductName(String cheeseProductName) {
+		this.cheeseProductName = cheeseProductName;
 	}
 	
 	public BigDecimal getCheesePrice() {
