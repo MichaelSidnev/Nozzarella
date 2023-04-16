@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>New cheese</title>
-</head>
-<body>
-	<form th:method="POST" th:action="@{/cheese}" th:object="${cheese}">
- <input type="submit"
-			value="Create!" />
-	</form>
-
-</body>
-</html>
+	<head>
+		<meta charset="UTF-8">
+			<title>New cheese</title>
+		</head>
+		<body>
+			<form th:method="POST" th:action="@{/cheese}" th:object="${cheese}">
+				<input type="submit" value="Create!"/>
+			</form>
+		</body>
+	</html>

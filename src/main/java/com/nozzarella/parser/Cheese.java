@@ -2,20 +2,30 @@ package com.nozzarella.parser;
 
 import java.math.BigDecimal;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import jakarta.validation.constraints.NotNull;
+
 public class Cheese {
+	
+	//@NotNull(message = "id shoud not be null")
 	private int id;
+	//@NotNull(message = "name shoud not be null")
 	private String cheeseProductName;
+	//@NotNull(message = "price shoud not be null")
 	private BigDecimal cheesePrice;
+	//@NotNull(message = "country shoud not be null")
+	private String cheeseCountry;
+	
 
-
-	public Cheese() {
-
-	}
-
-	public Cheese(int id, String cheeseProductName, BigDecimal cheesePrice) {
+	public Cheese(int id, String cheeseProductName, BigDecimal cheesePrice, String cheeseCountry) {
 		this.id = id;
 		this.cheeseProductName = cheeseProductName;
 		this.cheesePrice = cheesePrice;
+		this.cheeseCountry = cheeseCountry;
+	}
+
+	public Cheese() {
 	}
 
 	public int getId() {
@@ -40,6 +50,14 @@ public class Cheese {
 
 	public void setCheesePrice(BigDecimal cheesePrice) {
 		this.cheesePrice = cheesePrice;
+	}
+
+	public String getCheeseCountry() {
+		return cheeseCountry;
+	}
+
+	public void setCheeseCountry(String cheeseCountry) {
+		this.cheeseCountry = cheeseCountry;
 	}
 
 
