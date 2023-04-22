@@ -42,13 +42,19 @@ public class CheeseController {
 	@PostMapping()
 	public String create() {
 		Cheese cheese = new Cheese();
+		Cheese cheese1 = new Cheese();
 		Lenta product = new Lenta();
-
+		
+		product.lentaParse();
 		cheese.setCheesePrice(product.lentaLamberPrice());
 		cheese.setProductName(product.lentaLamberProductName());
 		cheese.setCheeseCountry(product.lentaLamberCountry());
-
 		CheeseDAO.save(cheese);
+		
+		cheese1.setCheesePrice(product.lentaParmesanPrice());
+		cheese1.setProductName(product.lentaParmesanProductName());
+		cheese1.setCheeseCountry(product.lentaParmesanCountry());
+		CheeseDAO.save(cheese1);
 		return "redirect:cheese";
 	}
 }
