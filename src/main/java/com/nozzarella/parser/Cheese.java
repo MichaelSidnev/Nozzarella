@@ -60,5 +60,4 @@ public class Cheese {
 		this.cheeseCountry = cheeseCountry;
 	}
 
-
 }

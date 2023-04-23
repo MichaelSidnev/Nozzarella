@@ -1,5 +1,8 @@
 package com.nozzarella.controllers;
 
+import java.io.IOException;
+
+import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +18,7 @@ import com.nozzarella.parser.CheeseDAO;
 
 import jakarta.validation.Valid;
 import parsers.Lenta;
+import parsers.Somelie;
 
 @Controller
 @RequestMapping("/cheese")
@@ -40,11 +44,11 @@ public class CheeseController {
 	}
 
 	@PostMapping()
-	public String create() {
+	public String create() throws IOException {
+		Lenta product = new Lenta();
 		Cheese cheese = new Cheese();
 		Cheese cheese1 = new Cheese();
-		Lenta product = new Lenta();
-		
+
 		product.lentaParse();
 		cheese.setCheesePrice(product.lentaLamberPrice());
 		cheese.setProductName(product.lentaLamberProductName());
@@ -55,6 +59,17 @@ public class CheeseController {
 		cheese1.setProductName(product.lentaParmesanProductName());
 		cheese1.setCheeseCountry(product.lentaParmesanCountry());
 		CheeseDAO.save(cheese1);
+		
+		Somelie product2 = new Somelie();
+		Somelie page = new Somelie();
+		Element parsePage = page.SomelieParse();
+		Cheese cheese2 = new Cheese();
+		
+		cheese2.setCheesePrice(product2.somelieCheesePrice(parsePage));
+		cheese2.setProductName(product2.somelieCheeseProductName(parsePage));
+		cheese2.setCheeseCountry(product2.somelieCheeseCountry());
+		CheeseDAO.save(cheese2);
+			
 		return "redirect:cheese";
 	}
 }
