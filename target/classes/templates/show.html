@@ -1,11 +1,17 @@
+
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
-			<title>Человек</title>
+			<title>Show</title>
 		</head>
 		<body>
-			<p th:text="${person.getName()}">VALUE</p>
-			<p th:text="${person.getId()}">VALUE</p>
+			<p th:text="${cheese.getProductName()}">VALUE</p>
+			<p th:text="${cheese.getId()}">VALUE</p>
+			<p th:text="${cheese.getCheesePrice()}">VALUE</p>
+			<p th:text="${cheese.getCheeseCountry()}">VALUE</p>
+			<a href="/cheese">
+				<button style="width: 50pt">back</button>
+			</a>
 		</body>
 	</html>

@@ -1,12 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<meta charset="UTF-8">
-			<title>Все люди</title>
-		</head>
-		<body>
-			<div th:each="person : ${people}">
-				<a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getName()}">user</a>
-			</div>
-		</body>
-	</html>
+	<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  background-color: #c0c0c0;
+}
+</style>
+		<meta charset="UTF-8"/>
+		<title>Index</title>
+	</head>
+	<body>
+		<table align="center" width="80%" cellspasing="1" >
+			<tr>
+				<th style="text-align: left;">Product type</th>
+				<th style="text-align: left;">Price per kilo</th>
+				<th style="text-align: left;">Country</th>
+				<th style="text-align: left;">Trend</th>
+			</tr>
+
+		<tr th:each="cheese: ${cheese}">
+			<td> <a th:href="@{/cheese/{id}(id=${cheese.getId()})}" th:text="${cheese.getProductName()}">Lamber</a> </td>
+			<td> <a th:text="${cheese.getCheesePrice()}">645.4545</a> </td>
+			<td> <a th:text="${cheese.getCheeseCountry()}">USA</a> </td>
+		</tr>
+		</table>
+			<form th:method="POST" th:action="@{/cheese}">
+				<input type="submit" value="Create!"/>
+			</form>
+	</body>
+</html>
