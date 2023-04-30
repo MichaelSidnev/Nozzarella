@@ -23,7 +23,7 @@ public class Somelie {
 	public BigDecimal somelieCheesePrice(Element item) {
 
 		Element itemPrice = item.select("div[class=catalog-flex]").get(0);
-		String stringPrice = itemPrice.select("span[class=price]").text();
+		String stringPrice = itemPrice.select("span[class=price]").get(0).text();
 		BigDecimal price = new BigDecimal(stringPrice);
 		return price;
 	}
