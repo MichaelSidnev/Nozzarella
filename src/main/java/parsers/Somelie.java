@@ -3,6 +3,8 @@ package parsers;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.lang.model.util.Elements;
 
@@ -19,12 +21,24 @@ public class Somelie {
 		Element item = catalog.select("div[class=catalog-item one-col]").get(0);
 		return item;
 	}
+	
+	public Pattern pattern = Pattern.compile("\\d{3}");
 
-	public BigDecimal somelieCheesePrice(Element item) {
+	public String getPriceFromString(String stringDate) throws Exception {
+		Matcher matcher = pattern.matcher(stringDate);
+		if (matcher.find()) {
+			return matcher.group();
+		}
+		throw new Exception("Can't extract date from string");
+	}
+
+
+	public BigDecimal somelieCheesePrice(Element item) throws Exception {
 
 		Element itemPrice = item.select("div[class=catalog-flex]").get(0);
 		String stringPrice = itemPrice.select("span[class=price]").get(0).text();
-		BigDecimal price = new BigDecimal(stringPrice);
+		String matchPrice = getPriceFromString(stringPrice);
+		BigDecimal price = new BigDecimal(matchPrice);
 		return price;
 	}
 

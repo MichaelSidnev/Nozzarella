@@ -44,7 +44,7 @@ public class CheeseController {
 	}
 
 	@PostMapping()
-	public String create() throws IOException {
+	public String create() throws Exception {
 		Lenta product = new Lenta();
 		Cheese cheese = new Cheese();
 		Cheese cheese1 = new Cheese();

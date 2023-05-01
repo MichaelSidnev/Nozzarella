@@ -18,7 +18,7 @@ public class theWeatherParser {
 		return page;
 	}
 
-	// Создаём паттерн с регуляпрныьм выражением
+	// Создаём паттерн с регулярным выражением
 	private static Pattern pattern = Pattern.compile("\\d{2}\\.\\d{2}");
 
 	// Метод для вычленения даты из строки
