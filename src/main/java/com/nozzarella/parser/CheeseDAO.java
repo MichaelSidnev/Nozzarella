@@ -3,6 +3,7 @@ package com.nozzarella.parser;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -39,7 +40,7 @@ public class CheeseDAO {
 
 		try {
 			Statement statement = connection.createStatement();
-			String SQL = "SELECT * FROM Cheesese";
+			String SQL = "SELECT * FROM cheese_sql_table";
 			ResultSet resultSet = statement.executeQuery(SQL);
 			
 			while(resultSet.next()) {
@@ -48,7 +49,7 @@ public class CheeseDAO {
 				currentCheese.setId(resultSet.getInt("id"));
 				currentCheese.setProductName(resultSet.getString("name"));
 				currentCheese.setCheesePrice(resultSet.getBigDecimal("price"));
-				currentCheese.setCheeseCountry(resultSet.getNString("country"));
+				currentCheese.setCheeseCountry(resultSet.getString("country"));
 				
 				cheeses.add(currentCheese);;
 			}
@@ -61,12 +62,42 @@ public class CheeseDAO {
 	}
 
 	public Cheese show(int id) {
-//		return cheeseList.stream().filter(Cheese -> Cheese.getId() == id).findAny().orElse(null);
-		return null;
+		
+		Cheese cheese = null;
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement("SECT * FROM cheese_sql_table WHERE id = ?");
+			
+			preparedStatement.setInt(1, id);
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			resultSet.next();
+
+			cheese = new Cheese();
+			
+			cheese.setId(resultSet.getInt("id"));
+			cheese.setProductName(resultSet.getString("name"));
+			cheese.setCheesePrice(resultSet.getBigDecimal("price"));
+			cheese.setCheeseCountry(resultSet.getString("country"));
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cheese;
 	}
 
 	public void save(Cheese cheese) {
-//		cheese.setId(++CHEESE_COUNT);
-//		cheeseList.add(cheese);
+		
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO cheese_sql_table VALUES (1,?,?,?)");
+		
+			preparedStatement.setString(1, cheese.getProductName());
+			preparedStatement.setBigDecimal(2, cheese.getCheesePrice());
+			preparedStatement.setString(3, cheese.getCheeseCountry());
+			
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
