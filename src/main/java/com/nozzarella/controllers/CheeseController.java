@@ -1,40 +1,38 @@
 package com.nozzarella.controllers;
 
-import java.io.IOException;
+import java.util.Optional;
 
 import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.nozzarella.parser.Cheese;
-import com.nozzarella.parser.CheeseDAO;
-
-import jakarta.validation.Valid;
-import parsers.Lenta;
-import parsers.Somelie;
+import com.nozzarella.domain.Cheese;
+import com.nozzarella.parser.Lenta;
+import com.nozzarella.parser.Somelie;
+import com.nozzarella.repository.CheeseRepository;
 
 @Controller
 @RequestMapping("/cheese")
 public class CheeseController {
 	@Autowired
-	private CheeseDAO CheeseDAO;
+	private CheeseRepository cheeseRepository;
 
 	@GetMapping()	
 	public String index(Model model) {
-		model.addAttribute("cheese", CheeseDAO.index());
+		Iterable <Cheese> cheese = cheeseRepository.findAll();
+		model.addAttribute("cheese", cheese);
 		return "index";
 	}
 
 	@GetMapping("/{id}")
-	public String show(@PathVariable("id") int id, Model model) {
-		model.addAttribute("cheese", CheeseDAO.show(id));
+	public String show(@RequestParam(name = "id", required = true) int id, Model model) {
+		Optional<Cheese> cheese = cheeseRepository.findById(id);
+		model.addAttribute("cheese", cheese);
 		return "show";
 	}
 
@@ -53,12 +51,13 @@ public class CheeseController {
 		cheese.setCheesePrice(product.lentaLamberPrice());
 		cheese.setProductName(product.lentaLamberProductName());
 		cheese.setCheeseCountry(product.lentaLamberCountry());
-		CheeseDAO.save(cheese);
+		cheese.setId(0);
+		cheeseRepository.save(cheese);
 		
 		cheese1.setCheesePrice(product.lentaParmesanPrice());
 		cheese1.setProductName(product.lentaParmesanProductName());
 		cheese1.setCheeseCountry(product.lentaParmesanCountry());
-		CheeseDAO.save(cheese1);
+		cheeseRepository.save(cheese1);
 		
 		Somelie product2 = new Somelie();
 		Somelie page = new Somelie();
@@ -68,7 +67,7 @@ public class CheeseController {
 		cheese2.setCheesePrice(product2.somelieCheesePrice(parsePage));
 		cheese2.setProductName(product2.somelieCheeseProductName(parsePage));
 		cheese2.setCheeseCountry(product2.somelieCheeseCountry());
-		CheeseDAO.save(cheese2);
+		cheeseRepository.save(cheese2); 
 			
 		return "redirect:cheese";
 	}

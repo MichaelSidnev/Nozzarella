@@ -1,22 +1,25 @@
-package com.nozzarella.parser;
+package com.nozzarella.domain;
 
 import java.math.BigDecimal;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 
+@Entity
 public class Cheese {
-	
-	//@NotNull(message = "id shoud not be null")
-	private int id;
-	//@NotNull(message = "name shoud not be null")
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	@NotNull(message = "name shoud not be null")
 	private String cheeseProductName;
-	//@NotNull(message = "price shoud not be null")
+	@NotNull(message = "price shoud not be null")
 	private BigDecimal cheesePrice;
-	//@NotNull(message = "country shoud not be null")
+	@NotNull(message = "country shoud not be null")
 	private String cheeseCountry;
-	
 
 	public Cheese(int id, String cheeseProductName, BigDecimal cheesePrice, String cheeseCountry) {
 		this.id = id;
@@ -43,7 +46,7 @@ public class Cheese {
 	public void setProductName(String cheeseProductName) {
 		this.cheeseProductName = cheeseProductName;
 	}
-	
+
 	public BigDecimal getCheesePrice() {
 		return cheesePrice;
 	}
