@@ -12,7 +12,8 @@ import jakarta.validation.constraints.NotNull;
 public class Cheese {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@NotNull
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@NotNull(message = "name shoud not be null")
 	private String cheeseProductName;
