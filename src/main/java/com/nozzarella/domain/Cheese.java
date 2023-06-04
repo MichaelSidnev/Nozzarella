@@ -1,6 +1,7 @@
 package com.nozzarella.domain;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,8 +13,7 @@ import jakarta.validation.constraints.NotNull;
 public class Cheese {
 
 	@Id
-	@NotNull
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	@NotNull(message = "name shoud not be null")
 	private String cheeseProductName;
@@ -21,12 +21,15 @@ public class Cheese {
 	private BigDecimal cheesePrice;
 	@NotNull(message = "country shoud not be null")
 	private String cheeseCountry;
+	@NotNull(message = "timing shood not be null")
+	private LocalDate timing;
 
-	public Cheese(int id, String cheeseProductName, BigDecimal cheesePrice, String cheeseCountry) {
+	public Cheese(int id, String cheeseProductName, BigDecimal cheesePrice, String cheeseCountry, LocalDate timing) {
 		this.id = id;
 		this.cheeseProductName = cheeseProductName;
 		this.cheesePrice = cheesePrice;
 		this.cheeseCountry = cheeseCountry;
+		this.timing = timing;
 	}
 
 	public Cheese() {
@@ -62,6 +65,14 @@ public class Cheese {
 
 	public void setCheeseCountry(String cheeseCountry) {
 		this.cheeseCountry = cheeseCountry;
+	}
+
+	public LocalDate getTiming() {
+		return timing;
+	}
+
+	public void setTiming(LocalDate localDate) {
+		this.timing = localDate;
 	}
 
 }
