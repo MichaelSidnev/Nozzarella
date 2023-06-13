@@ -1,4 +1,4 @@
-package parsers;
+package com.nozzarella.parser;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -31,7 +31,6 @@ public class Somelie {
 		}
 		throw new Exception("Can't extract date from string");
 	}
-
 
 	public BigDecimal somelieCheesePrice(Element item) throws Exception {
 
