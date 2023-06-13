@@ -21,7 +21,6 @@ import com.nozzarella.parser.Lenta;
 import com.nozzarella.parser.Somelie;
 import com.nozzarella.repository.CheeseRepository;
 
-@Component
 @Controller
 @RequestMapping("/cheese")
 public class CheeseController {
@@ -52,7 +51,6 @@ public class CheeseController {
 	
 
 	@PostMapping()
-	@EventListener(ApplicationReadyEvent.class)
 	public String create() throws Exception {
 		LocalDate localDate = LocalDate.now();
 		Lenta product = new Lenta();
