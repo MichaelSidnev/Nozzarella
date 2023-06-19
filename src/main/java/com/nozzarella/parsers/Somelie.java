@@ -1,4 +1,4 @@
-package com.nozzarella.parser;
+package com.nozzarella.parsers;
 
 import java.io.IOException;
 import java.math.BigDecimal;

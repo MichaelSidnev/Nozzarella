@@ -17,24 +17,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nozzarella.domain.Cheese;
-import com.nozzarella.parser.Lenta;
-import com.nozzarella.parser.Somelie;
+import com.nozzarella.parsers.Lenta;
+import com.nozzarella.parsers.Somelie;
 import com.nozzarella.repository.CheeseRepository;
 
 @Controller
-@RequestMapping("/cheese")
+
 public class CheeseController {
 	@Autowired
 	private CheeseRepository cheeseRepository;
 
-	@GetMapping()
+	@GetMapping("cheese")
 	public String index(Model model) {
 		Iterable<Cheese> cheese = cheeseRepository.findAll();
 		model.addAttribute("cheese", cheese);
 		return "index";
 	}
+	
+	@GetMapping("/")
+	public String greeting() {
+		return "home";
+	}
 
-	@GetMapping("/{id}")
+	@GetMapping("cheese/{id}")
 	public String show(@PathVariable(value = "id", required = true) Integer id, Model model) {
 		Optional<Cheese> cheese = cheeseRepository.findById(id);
 		if (cheese.isEmpty()) {
@@ -50,7 +55,7 @@ public class CheeseController {
 	}
 	
 
-	@PostMapping()
+	@PostMapping("cheese")
 	public String create() throws Exception {
 		LocalDate localDate = LocalDate.now();
 		Lenta product = new Lenta();

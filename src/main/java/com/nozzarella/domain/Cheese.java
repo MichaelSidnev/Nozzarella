@@ -21,7 +21,7 @@ public class Cheese {
 	private BigDecimal cheesePrice;
 	@NotNull(message = "country shoud not be null")
 	private String cheeseCountry;
-	@NotNull(message = "timing shood not be null")
+	@NotNull(message = "timing shood not be null")	
 	private LocalDate timing;
 
 	public Cheese(int id, String cheeseProductName, BigDecimal cheesePrice, String cheeseCountry, LocalDate timing) {
