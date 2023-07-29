@@ -1,5 +1,6 @@
 package com.nozzarella.controllers;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -7,6 +8,9 @@ import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,17 +20,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.nozzarella.domain.Cheese;
+import com.nozzarella.models.Cheese;
 import com.nozzarella.parsers.Lenta;
 import com.nozzarella.parsers.Somelie;
 import com.nozzarella.repository.CheeseRepository;
 
 @Controller
-
 public class CheeseController {
 	@Autowired
 	private CheeseRepository cheeseRepository;
 
+	@GetMapping("/authenticated")
+	public String pageForAuthenticatedUsers(Principal principal) {
+		Authentication  a = SecurityContextHolder.getContext().getAuthentication();
+		return "secured part of web service:" + principal.getName();
+	}
+	
 	@GetMapping("cheese")
 	public String index(Model model) {
 		Iterable<Cheese> cheese = cheeseRepository.findAll();

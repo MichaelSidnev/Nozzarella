@@ -1,4 +1,4 @@
-package com.nozzarella.domain;
+package com.nozzarella.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
