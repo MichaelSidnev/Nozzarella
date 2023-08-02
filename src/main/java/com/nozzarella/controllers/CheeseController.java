@@ -22,35 +22,44 @@ import com.nozzarella.parser.Somelie;
 import com.nozzarella.repository.CheeseRepository;
 
 @Controller
-@RequestMapping("/cheese")
+
 public class CheeseController {
 	@Autowired
 	private CheeseRepository cheeseRepository;
 
-	@GetMapping()
+	@GetMapping("/cheese")
 	public String index(Model model) {
 		Iterable<Cheese> cheese = cheeseRepository.findAll();
 		model.addAttribute("cheese", cheese);
-		return "index";
+		return "cheeseList";
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("cheese/{id}")
 	public String show(@PathVariable(value = "id", required = true) Integer id, Model model) {
 		Optional<Cheese> cheese = cheeseRepository.findById(id);
 		if (cheese.isEmpty()) {
 			return "cheese not found";
 		}
 		model.addAttribute("cheese", cheese.get());
-		return "show";
+		return "cheesePage";
 	}
 
-	@GetMapping("/new")
+	@GetMapping("/user")
 	public String newCheese() {
-		return "new";
+		return "userPage";
 	}
 	
-
-	@PostMapping()
+	@GetMapping("/home")
+	public String home() {
+		return "home";
+	}
+	
+	@GetMapping("/")
+	public String greeting() {
+		return "home";
+	}
+	
+	@PostMapping("/cheese")
 	public String create() throws Exception {
 		LocalDate localDate = LocalDate.now();
 		Lenta product = new Lenta();
@@ -81,6 +90,6 @@ public class CheeseController {
 		cheese2.setTiming(localDate);
 		cheeseRepository.save(cheese2);
 
-		return "redirect:cheese";
+		return "redirect:cheeseList";
 	}
 }

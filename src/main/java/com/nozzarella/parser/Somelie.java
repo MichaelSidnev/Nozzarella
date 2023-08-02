@@ -15,7 +15,7 @@ import org.jsoup.nodes.Element;
 public class Somelie {
 
 	public Element SomelieParse() throws IOException {
-		String url = "https://nn.chesom.com/syry_i_gastronomiya_dlya_gurmanov/katalog_syrov/tverdye_syry/";
+		String url = "https://chesom.com/syry_i_gastronomiya_dlya_gurmanov/katalog_syrov/tverdye_syry/gruyere-1/";
 		Document page = Jsoup.parse(new URL(url), 3000);
 		Element catalog = page.select("div[class=catalog]").first();
 		Element item = catalog.select("div[class=catalog-item one-col]").get(0);
